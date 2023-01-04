@@ -25,5 +25,21 @@ Listed below are the technologies used to make this app possible
 
 
 
+## Install Packages/Dependencies
+Install packages using the following command:
+- Go to `films_et_plus` folder: `cd films_et_plus`
+- Yarn Install: `yarn install`
+- NPM Install: `npm install`
+
+
+
+## Run the Client
+Start the client server by going to `films_et_plus` folder and running `development` environment
+- `cd films_et_plus/`
+- Yarn Run: `yarn run start`
+- Go to `http://localhost:3000/`
+
+
+
 ## License: 
 This code is licensed under the MIT License.
