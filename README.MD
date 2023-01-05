@@ -25,6 +25,12 @@ Listed below are the technologies used to make this app possible
 
 
 
+## Packages/Dependencies
+- styled-components
+- react-router-dom
+
+
+
 ## Install Packages/Dependencies
 Install packages using the following command:
 - Go to `films_et_plus` folder: `cd films_et_plus`
