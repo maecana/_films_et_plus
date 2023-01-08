@@ -6,6 +6,7 @@ const Login = (props) => {
             <Content>
                 <CTA>
                     <CTALogoTop src="/images/cta-logo-one.svg" alt="Top Logos" />
+                    <RegistrationButton>GET ALL VIDEOS</RegistrationButton>
                 </CTA>
 
                 <BgImage />
@@ -52,17 +53,10 @@ const BgImage = styled.div`
 const CTA = styled.div`
     width: 100%;
     max-width: 650px;
-    margin-top: 0;
-    margin-bottom: 2vw;
-    margin-left: auto;
-    margin-right: auto;
     display: flex;
-    flex-wrap: wrap;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    transition-timing-function: ease-out;
-    transition: 0.2s;
 `;
 
 const CTALogoTop = styled.img`
@@ -71,6 +65,22 @@ const CTALogoTop = styled.img`
     max-width: 600px;
     min-height: 1px;
     display: block;
+`;
+
+const RegistrationButton = styled.a`
+    font-weight: bold;
+    font-size: 18px;
+    background-color: #0063e5;
+    padding: 16.4px 0;
+    margin-bottom: 12px;
+    width: 100%;
+    letter-spacing: 1.4px;
+    border-radius: 4px;
+    border: 1px solid transparent;
+
+    &:hover {
+        background-color: #0483ee;
+    }
 `;
 
 export default Login;
