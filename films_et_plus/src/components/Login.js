@@ -3,7 +3,13 @@ import styled from 'styled-components';
 const Login = (props) => {
     return (
         <Container>
-            <Content><BgImage /></Content>
+            <Content>
+                <CTA>
+                    <CTALogoTop src="/images/cta-logo-one.svg" alt="Top Logos" />
+                </CTA>
+
+                <BgImage />
+            </Content>
         </Container>
     );
 };
@@ -41,6 +47,30 @@ const BgImage = styled.div`
     left: 0;
     right: 0;
     z-index: -1;
+`;
+
+const CTA = styled.div`
+    width: 100%;
+    max-width: 650px;
+    margin-top: 0;
+    margin-bottom: 2vw;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition-timing-function: ease-out;
+    transition: 0.2s;
+`;
+
+const CTALogoTop = styled.img`
+    margin-bottom: 2vw;
+    width: 100%;
+    max-width: 600px;
+    min-height: 1px;
+    display: block;
 `;
 
 export default Login;
