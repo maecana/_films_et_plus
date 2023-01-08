@@ -6,7 +6,13 @@ const Login = (props) => {
             <Content>
                 <CTA>
                     <CTALogoTop src="/images/cta-logo-one.svg" alt="Top Logos" />
-                    <RegistrationButton>GET ALL VIDEOS</RegistrationButton>
+                    <Register>GET ALL VIDEOS</Register>
+                    <Description>
+                        Get Premier Access to Raya and the Last Dragon for an additional fee
+                        with a Disney+ subscription. As of 03/26/21, the price of Disney+
+                        and The Disney Bundle will increase by $1.
+                    </Description>
+                    <CTALogoBottom src="/images/cta-logo-two.png" alt="Bottom Logos" />
                 </CTA>
 
                 <BgImage />
@@ -67,7 +73,7 @@ const CTALogoTop = styled.img`
     display: block;
 `;
 
-const RegistrationButton = styled.a`
+const Register = styled.a`
     font-weight: bold;
     font-size: 18px;
     background-color: #0063e5;
@@ -81,6 +87,23 @@ const RegistrationButton = styled.a`
     &:hover {
         background-color: #0483ee;
     }
+`;
+
+const Description = styled.div`
+    color: color: hsla(0, 0%, 95.3%, 1);
+    font-size: 11px;
+    margin-bottom: 24px;
+    line-height: 1.5;
+    letter-spacing: 1.5px;
+`;
+
+const CTALogoBottom = styled.img`
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 600px;
+    min-height: 1px;
+    display: inline-block;
+    vertical-align: bottom;
 `;
 
 export default Login;
