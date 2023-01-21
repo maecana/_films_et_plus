@@ -97,7 +97,7 @@ const NavMenu = styled.div`
             }
         }
 
-        &:hover: {
+        &:hover {
             span:before {
                 transform: scaleX(1);
                 visibility: visible;
