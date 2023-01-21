@@ -1,6 +1,38 @@
+// Dependency Imports
 import styled from 'styled-components';
+import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+// Internal Imports
+import { auth, provider } from '../firebase';
+
 
 const Header = (props) => {
+
+    const handleAuth = () => {
+        signInWithPopup(auth, provider)
+        .then((result) => {
+            // This gives you a Google Access Token. You can use it to access the Google API.
+            const credential = GoogleAuthProvider.credentialFromResult(result);
+            const token = credential.accessToken;
+            // The signed-in user info.
+            const user = result.user;
+
+            console.log("token: "+token);
+            console.log("user: ")
+            console.dir(user);
+        }).catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            const email = error.customData.email;
+            // The AuthCredential type that was used.
+            const credential = GoogleAuthProvider.credentialFromError(error);
+            
+            console.log("errorCode: "+errorCode);
+            console.log("errorMessage: "+errorMessage);
+            console.log("email: "+email);
+            console.log("credential: "+credential);
+        });
+    }
+
     return (
         <Nav>
             <Logo>
@@ -16,7 +48,7 @@ const Header = (props) => {
                 <a href="/"><img src="/images/series-icon.svg" alt="Series" /><span>Series</span></a>
             </NavMenu>
 
-            <Login>Login</Login>
+            <Login onClick={handleAuth}>Login</Login>
         </Nav>
     );
 };
