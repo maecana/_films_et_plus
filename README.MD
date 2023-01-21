@@ -23,6 +23,8 @@ Listed below are the technologies used to make this app possible
 | ------ | ------ | ------ |
 | ReactJS | [https://reactjs.org/](https://reactjs.org/) | Front-end Framework |
 | Firebase | [https://firebase.google.com/](https://firebase.google.com/) | App Development Platform |
+| React Redux | [https://react-redux.js.org/](https://react-redux.js.org/) | React Bindings |
+| Redux Toolkit | [https://redux-toolkit.js.org/](https://redux-toolkit.js.org/) | React Toolset |
 
 
 
@@ -31,6 +33,8 @@ Listed below are the technologies used to make this app possible
 - react-router-dom
 - firebase
 - firebase-tools
+- react-redux
+- @reduxjs/toolkit
 
 
 
