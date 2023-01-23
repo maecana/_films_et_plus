@@ -1,12 +1,25 @@
 // Dependency Imports
 import styled from 'styled-components';
+import { useDispatch, useSelector } from 'react-redux';
+// import { useHistory } from 'react-router-dom';
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 // Internal Imports
 import { auth, provider } from '../firebase';
+import { 
+    selectUserName,
+    // selectUserEmail,
+    selectUserPhoto,
+    setUserLoginDetails
+} from '../features/users/userSlice';
 
 
 const Header = (props) => {
-
+    const dispatch = useDispatch();
+    // const history = useHistory();
+    const username = useSelector(selectUserName);
+    // const email = useSelector(selectUserEmail);
+    const photo = useSelector(selectUserPhoto);
+    
     const handleAuth = () => {
         signInWithPopup(auth, provider)
         .then((result) => {
@@ -16,22 +29,27 @@ const Header = (props) => {
             // The signed-in user info.
             const user = result.user;
 
+            setUser(user);
             console.log("token: "+token);
-            console.log("user: ")
-            console.dir(user);
         }).catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            const email = error.customData.email;
-            // The AuthCredential type that was used.
-            const credential = GoogleAuthProvider.credentialFromError(error);
-            
-            console.log("errorCode: "+errorCode);
-            console.log("errorMessage: "+errorMessage);
-            console.log("email: "+email);
-            console.log("credential: "+credential);
+            // const errorCode = error.code;
+            // const errorMessage = error.message;
+            // const email = error.customData.email;
+            // // The AuthCredential type that was used.
+            // const credential = GoogleAuthProvider.credentialFromError(error);
         });
     }
+
+    const setUser = (user) => {
+        dispatch(
+            setUserLoginDetails({
+                name: user.displayName,
+                email: user.email,
+                photo: user.photoURL,
+            })
+        )
+    }
+
 
     return (
         <Nav>
@@ -39,16 +57,22 @@ const Header = (props) => {
                 <img src="/images/logo.svg" alt='Film Et Plus'/>
             </Logo>
 
-            <NavMenu>
-                <a href="/"><img src="/images/home-icon.svg" alt="Home" /><span>HOME</span></a>
-                <a href="/"><img src="/images/search-icon.svg" alt="Search" /><span>Search</span></a>
-                <a href="/"><img src="/images/watchlist-icon.svg" alt="Watchlist" /><span>Watchlist</span></a>
-                <a href="/"><img src="/images/original-icon.svg" alt="Originals" /><span>Originals</span></a>
-                <a href="/"><img src="/images/movie-icon.svg" alt="Movies" /><span>Movies</span></a>
-                <a href="/"><img src="/images/series-icon.svg" alt="Series" /><span>Series</span></a>
-            </NavMenu>
+            {
+                !username ?
+                <Login onClick={handleAuth}>Login</Login> :
+                <>
+                    <NavMenu>
+                        <a href="/"><img src="/images/home-icon.svg" alt="Home" /><span>HOME</span></a>
+                        <a href="/"><img src="/images/search-icon.svg" alt="Search" /><span>Search</span></a>
+                        <a href="/"><img src="/images/watchlist-icon.svg" alt="Watchlist" /><span>Watchlist</span></a>
+                        <a href="/"><img src="/images/original-icon.svg" alt="Originals" /><span>Originals</span></a>
+                        <a href="/"><img src="/images/movie-icon.svg" alt="Movies" /><span>Movies</span></a>
+                        <a href="/"><img src="/images/series-icon.svg" alt="Series" /><span>Series</span></a>
+                    </NavMenu>
 
-            <Login onClick={handleAuth}>Login</Login>
+                    <UserImg src={photo} alt={username} />
+                </>
+            }
         </Nav>
     );
 };
@@ -165,6 +189,14 @@ const Login = styled.a`
         color: #000;
         border-color: transparent;
     }
+`;
+
+const UserImg = styled.img`
+    width: 40px;
+    height: 40px;
+    max-width: 40px;
+    border-radius: 50%;
+    margin-left: 1rem;
 `;
 
 export default Header;
