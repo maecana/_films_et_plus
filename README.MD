@@ -35,6 +35,7 @@ Listed below are the technologies used to make this app possible
 - firebase-tools
 - react-redux
 - @reduxjs/toolkit
+- redux-logger
 
 
 
