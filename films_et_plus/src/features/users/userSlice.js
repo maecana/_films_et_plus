@@ -1,4 +1,6 @@
+// Dependency Imports
 import { createSlice } from "@reduxjs/toolkit";
+
 
 const initialState = {
     name:'',
