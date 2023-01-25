@@ -9,8 +9,8 @@ import Login from './components/Login';
 function App() {
   return (
     <div className='App'>
-      <Header />
       <Router>
+        <Header />
         <Routes>
           <Route exact path='/' element={<Login />} />
           <Route exact path='/home' element={<Home />} />

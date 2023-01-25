@@ -1,7 +1,8 @@
 // Dependency Imports
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
-// import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router';
+import { useEffect } from 'react';
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 // Internal Imports
 import { auth, provider } from '../firebase';
@@ -15,10 +16,19 @@ import {
 
 const Header = (props) => {
     const dispatch = useDispatch();
-    // const history = useHistory();
+    const navigate = useNavigate();
     const username = useSelector(selectUserName);
     // const email = useSelector(selectUserEmail);
     const photo = useSelector(selectUserPhoto);
+
+    useEffect(() => {
+        auth.onAuthStateChanged(async (user) => {
+            if (user) {
+                setUser(user);
+                navigate('/home');
+            }
+        })
+    }, [ username ]);
     
     const handleAuth = () => {
         signInWithPopup(auth, provider)
