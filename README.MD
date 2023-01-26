@@ -25,6 +25,8 @@ Listed below are the technologies used to make this app possible
 | Firebase | [https://firebase.google.com/](https://firebase.google.com/) | App Development Platform |
 | React Redux | [https://react-redux.js.org/](https://react-redux.js.org/) | React Bindings |
 | Redux Toolkit | [https://redux-toolkit.js.org/](https://redux-toolkit.js.org/) | React Toolset |
+| Slick | [https://kenwheeler.github.io/slick/](https://kenwheeler.github.io/slick/) | Carousel / Image Slider |
+| React Slick | [https://react-slick.neostack.com/](https://react-slick.neostack.com/) | Carousel / Image Slider for React |
 
 
 
@@ -36,6 +38,8 @@ Listed below are the technologies used to make this app possible
 - react-redux
 - @reduxjs/toolkit
 - redux-logger
+- slick-carousel
+- react-slick
 
 
 
