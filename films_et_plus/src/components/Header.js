@@ -36,13 +36,12 @@ const Header = (props) => {
             signInWithPopup(auth, provider)
             .then((result) => {
                 // This gives you a Google Access Token. You can use it to access the Google API.
-                const credential = GoogleAuthProvider.credentialFromResult(result);
-                const token = credential.accessToken;
+                // const credential = GoogleAuthProvider.credentialFromResult(result);
+                // const token = credential.accessToken;
                 // The signed-in user info.
                 const user = result.user;
     
                 setUser(user);
-                console.log("token: "+token);
             }).catch((error) => {
                 // const errorCode = error.code;
                 // const errorMessage = error.message;
@@ -106,6 +105,7 @@ const Header = (props) => {
     );
 };
 
+
 const Nav = styled.nav`
     height: 70px;
     position: fixed;
@@ -133,7 +133,6 @@ const Logo = styled.a`
         width: 100%;
     }
 `;
-
 
 const NavMenu = styled.div`
     height: 100%;
@@ -257,5 +256,6 @@ const ProfileMenu = styled.div`
         }
     }
 `;
+
 
 export default Header;
