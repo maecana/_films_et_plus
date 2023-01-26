@@ -10,6 +10,7 @@ import {
     selectUserName,
     // selectUserEmail,
     selectUserPhoto,
+    setSignOutState,
     setUserLoginDetails
 } from '../features/users/userSlice';
 
@@ -31,23 +32,36 @@ const Header = (props) => {
     }, [ username ]);
     
     const handleAuth = () => {
-        signInWithPopup(auth, provider)
-        .then((result) => {
-            // This gives you a Google Access Token. You can use it to access the Google API.
-            const credential = GoogleAuthProvider.credentialFromResult(result);
-            const token = credential.accessToken;
-            // The signed-in user info.
-            const user = result.user;
-
-            setUser(user);
-            console.log("token: "+token);
-        }).catch((error) => {
-            // const errorCode = error.code;
-            // const errorMessage = error.message;
-            // const email = error.customData.email;
-            // // The AuthCredential type that was used.
-            // const credential = GoogleAuthProvider.credentialFromError(error);
-        });
+        if (!username) {
+            signInWithPopup(auth, provider)
+            .then((result) => {
+                // This gives you a Google Access Token. You can use it to access the Google API.
+                const credential = GoogleAuthProvider.credentialFromResult(result);
+                const token = credential.accessToken;
+                // The signed-in user info.
+                const user = result.user;
+    
+                setUser(user);
+                console.log("token: "+token);
+            }).catch((error) => {
+                // const errorCode = error.code;
+                // const errorMessage = error.message;
+                // const email = error.customData.email;
+                // // The AuthCredential type that was used.
+                // const credential = GoogleAuthProvider.credentialFromError(error);
+            });
+        } else {
+            auth.signOut().then(() => {
+                dispatch(setSignOutState());
+                navigate('/');
+            }).catch((error) => {
+                // const errorCode = error.code;
+                // const errorMessage = error.message;
+                // const email = error.customData.email;
+                // // The AuthCredential type that was used.
+                // const credential = GoogleAuthProvider.credentialFromError(error);
+            });
+        }
     }
 
     const setUser = (user) => {
@@ -80,7 +94,12 @@ const Header = (props) => {
                         <a href="/"><img src="/images/series-icon.svg" alt="Series" /><span>Series</span></a>
                     </NavMenu>
 
-                    <UserImg src={photo} alt={username} />
+                    <ProfileMenu>
+                        <UserImg src={photo} alt={username} />
+                        <ProfileMenuItem>
+                            <span onClick={handleAuth}>Sign Out</span>
+                        </ProfileMenuItem>
+                    </ProfileMenu>
                 </>
             }
         </Nav>
@@ -98,7 +117,6 @@ const Nav = styled.nav`
     justify-content: space-between;
     align-items: center;
     padding: 0 36px;
-    letter-spacing: 16px;
     z-index: 3;
 `;
 
@@ -207,6 +225,37 @@ const UserImg = styled.img`
     max-width: 40px;
     border-radius: 50%;
     margin-left: 1rem;
+`;
+
+const ProfileMenuItem = styled.div`
+    position: absolute;
+    z-index: 1;
+    bottom: -18px;
+    right: 1.4rem;
+    background-color: rgba(19, 19, 19, 0.34);
+    border: 1px solid rgba(151, 151, 151, 0.34);
+    border-radius: .5rem;
+    padding: .5rem 1rem;
+    box-shadow: rgba(0 0 0 / 50%) 0px 0px 18px 0px;
+    font-size: 14px;
+    opacity: 0;
+`;
+
+const ProfileMenu = styled.div`
+    positiion: relative;
+    max-width: 40px;
+    max-height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    &:hover {
+        ${ProfileMenuItem} {
+            opacity: 1;
+            transition-duration: 1s;
+        }
+    }
 `;
 
 export default Header;
