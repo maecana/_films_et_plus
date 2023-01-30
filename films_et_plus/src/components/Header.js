@@ -241,7 +241,6 @@ const ProfileMenuItem = styled.div`
 `;
 
 const ProfileMenu = styled.div`
-    positiion: relative;
     max-width: 40px;
     max-height: 40px;
     display: flex;
