@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router';
 import { useEffect } from 'react';
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 // Internal Imports
-import { auth, provider } from '../firebase';
+import { auth, provider } from '../firebase/firebase';
 import { 
     selectUserName,
     // selectUserEmail,
