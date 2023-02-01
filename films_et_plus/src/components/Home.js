@@ -2,6 +2,7 @@
 import styled from 'styled-components';
 // Local Imports
 import ImageSlider from './ImageSlider';
+import Recommends from './Recommends';
 import Viewers from './Viewers';
 
 
@@ -10,6 +11,7 @@ const Home = (props) => {
         <Container>
             <ImageSlider />
             <Viewers />
+            <Recommends />
         </Container>
     );
 };
