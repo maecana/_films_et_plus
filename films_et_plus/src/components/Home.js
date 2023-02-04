@@ -1,6 +1,12 @@
 // Package / Dependency Imports
 import styled from 'styled-components';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { collection, getDocs } from "firebase/firestore";
 // Local Imports
+import { db } from '../firebase/firebase';
+import { setMovies } from '../features/movie/movieSlice';
+import { selectUserName } from '../features/users/userSlice';
 import ImageSlider from './ImageSlider';
 import NewDisney from './NewDisney';
 import Originals from './Originals';
@@ -10,6 +16,39 @@ import Viewers from './Viewers';
 
 
 const Home = (props) => {
+    const dispatch = useDispatch();
+    const userName = useSelector(selectUserName);
+    let recommends = [];
+    let trending = [];
+    let originals = [];
+    let newDisney = [];
+
+    useEffect(() => {
+        getAllMovies();
+        
+        dispatch(setMovies({ recommends, trending, originals, newDisney }));
+    }, [ userName ]);
+
+    const getAllMovies = async () => {
+        const querySnapshot = await getDocs(collection(db, "movies"));
+        querySnapshot.forEach((doc) => {
+            switch (doc.data().type) {
+                case 'recommend':
+                    recommends.push({ id: doc.id, ...doc.data() });
+                    break;
+                case 'trending':
+                    trending.push({ id: doc.id, ...doc.data() });
+                    break;
+                case 'original':
+                    originals.push({ id: doc.id, ...doc.data() });
+                    break;
+                default:
+                    newDisney.push({ id: doc.id, ...doc.data() });
+                    break;
+            }
+        });
+    };
+
     return (
         <Container>
             <ImageSlider />
