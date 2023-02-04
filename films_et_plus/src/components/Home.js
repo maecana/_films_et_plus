@@ -18,15 +18,13 @@ import Viewers from './Viewers';
 const Home = (props) => {
     const dispatch = useDispatch();
     const userName = useSelector(selectUserName);
-    let recommends = [];
+    let recommend = [];
     let trending = [];
-    let originals = [];
+    let original = [];
     let newDisney = [];
 
     useEffect(() => {
         getAllMovies();
-        
-        dispatch(setMovies({ recommends, trending, originals, newDisney }));
     }, [ userName ]);
 
     const getAllMovies = async () => {
@@ -34,21 +32,28 @@ const Home = (props) => {
         querySnapshot.forEach((doc) => {
             switch (doc.data().type) {
                 case 'recommend':
-                    recommends = [...recommends, { id: doc.id, ...doc.data() }];
-                    console.log('recommends');
-                    console.log(recommends);
+                    recommend = [...recommend, { id: doc.id, ...doc.data() }];
                     break;
                 case 'trending':
                     trending = [...trending, { id: doc.id, ...doc.data() }];
                     break;
                 case 'original':
-                    originals = [...originals, { id: doc.id, ...doc.data() }];
+                    original = [...original, { id: doc.id, ...doc.data() }];
                     break;
                 default:
                     newDisney = [...newDisney, { id: doc.id, ...doc.data() }];
                     break;
             }
         });
+
+        dispatch(
+            setMovies({
+                recommend: recommend,
+                newDisney: newDisney,
+                original: original,
+                trending: trending,
+            })
+        );
     };
 
     return (
