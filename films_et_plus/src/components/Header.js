@@ -3,12 +3,11 @@ import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { useEffect } from 'react';
-import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { signInWithPopup } from "firebase/auth";
 // Internal Imports
 import { auth, provider } from '../firebase/firebase';
 import { 
     selectUserName,
-    // selectUserEmail,
     selectUserPhoto,
     setSignOutState,
     setUserLoginDetails
@@ -19,7 +18,6 @@ const Header = (props) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const username = useSelector(selectUserName);
-    // const email = useSelector(selectUserEmail);
     const photo = useSelector(selectUserPhoto);
 
     useEffect(() => {
@@ -29,7 +27,7 @@ const Header = (props) => {
                 navigate('/home');
             }
         })
-    }, [ username ]);
+    }, [ username, navigate ]);
     
     const handleAuth = () => {
         if (!username) {

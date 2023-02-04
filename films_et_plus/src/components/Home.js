@@ -13,7 +13,6 @@ import Originals from './Originals';
 import Recommends from './Recommends';
 import Trending from './Trending';
 import Viewers from './Viewers';
-import { useState } from 'react';
 
 
 const Home = (props) => {
