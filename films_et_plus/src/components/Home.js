@@ -13,48 +13,49 @@ import Originals from './Originals';
 import Recommends from './Recommends';
 import Trending from './Trending';
 import Viewers from './Viewers';
+import { useState } from 'react';
 
 
 const Home = (props) => {
     const dispatch = useDispatch();
     const userName = useSelector(selectUserName);
-    let recommend = [];
-    let trending = [];
-    let original = [];
-    let newDisney = [];
 
     useEffect(() => {
+        const getAllMovies = async () => {
+            let recommend = [];
+            let trending = [];
+            let original = [];
+            let newDisney = [];
+            const querySnapshot = await getDocs(collection(db, "movies"));
+
+            querySnapshot.forEach((doc) => {
+                switch (doc.data().type) {
+                    case 'recommend':
+                        recommend.push({ id: doc.id, ...doc.data() });
+                        break;
+                    case 'trending':
+                        trending.push({ id: doc.id, ...doc.data() });
+                        break;
+                    case 'original':
+                        original.push({ id: doc.id, ...doc.data() });
+                        break;
+                    default:
+                        newDisney.push({ id: doc.id, ...doc.data() });
+                        break;
+                }
+            });
+
+            dispatch(
+                setMovies({
+                    recommend: recommend,
+                    newDisney: newDisney,
+                    original: original,
+                    trending: trending,
+                })
+            );
+        };
         getAllMovies();
-    }, [ userName ]);
-
-    const getAllMovies = async () => {
-        const querySnapshot = await getDocs(collection(db, "movies"));
-        querySnapshot.forEach((doc) => {
-            switch (doc.data().type) {
-                case 'recommend':
-                    recommend = [...recommend, { id: doc.id, ...doc.data() }];
-                    break;
-                case 'trending':
-                    trending = [...trending, { id: doc.id, ...doc.data() }];
-                    break;
-                case 'original':
-                    original = [...original, { id: doc.id, ...doc.data() }];
-                    break;
-                default:
-                    newDisney = [...newDisney, { id: doc.id, ...doc.data() }];
-                    break;
-            }
-        });
-
-        dispatch(
-            setMovies({
-                recommend: recommend,
-                newDisney: newDisney,
-                original: original,
-                trending: trending,
-            })
-        );
-    };
+    }, [ userName, dispatch ]);
 
     return (
         <Container>
