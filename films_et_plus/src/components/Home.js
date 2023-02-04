@@ -34,16 +34,18 @@ const Home = (props) => {
         querySnapshot.forEach((doc) => {
             switch (doc.data().type) {
                 case 'recommend':
-                    recommends.push({ id: doc.id, ...doc.data() });
+                    recommends = [...recommends, { id: doc.id, ...doc.data() }];
+                    console.log('recommends');
+                    console.log(recommends);
                     break;
                 case 'trending':
-                    trending.push({ id: doc.id, ...doc.data() });
+                    trending = [...trending, { id: doc.id, ...doc.data() }];
                     break;
                 case 'original':
-                    originals.push({ id: doc.id, ...doc.data() });
+                    originals = [...originals, { id: doc.id, ...doc.data() }];
                     break;
                 default:
-                    newDisney.push({ id: doc.id, ...doc.data() });
+                    newDisney = [...newDisney, { id: doc.id, ...doc.data() }];
                     break;
             }
         });
