@@ -22,6 +22,13 @@ const Details = (props) => {
                         <img src="/images/play-icon-white.png" alt="" />
                         <span>Trailer</span>
                     </Trailer>
+                    <AddToList>
+                        <span />
+                        <span />
+                    </AddToList>
+                    <GroupWatch>
+                        <img src="/images/group-icon.png" alt="Group Watch" />
+                    </GroupWatch>
                 </Controls>
             </MetaContent>
         </Container>
@@ -141,6 +148,45 @@ const Trailer = styled(Player)`
     background: rgba(0, 0, 0, 0.3);
     border: 1px solid rgb(249, 249, 249);
     color: rgb(249, 249, 249);
+
+    &:hover {
+        color: rgb(0, 0, 0);
+
+        img {
+            content: url("/images/play-icon-black.png");
+        }
+    }
+`;
+
+const GroupWatch = styled(Player)`
+    border-radius: 50%;
+    min-width: 44px;
+    min-height: 44px;
+    border: 2px solid rgb(249, 249, 249);
+    background: rgba(0, 0, 0, 0.6);
+`;
+
+const AddToList = styled(GroupWatch)`
+    span {
+        background-color: rgb(249, 249, 249);
+        display: inline-block;
+        &:first-child {
+            height: 2px;
+            transform: translate(1px, 0px) rotate(0deg);
+            width: 16px;
+        }
+        &:nth-child(2) {
+            height: 16px;
+            transform: translateX(-7px) rotate(0deg);
+            width: 2px;
+        }
+    }
+    
+    &:hover {
+        span {
+            background-color: rgb(0, 0, 0);
+        }
+    }
 `;
 
 
