@@ -57,10 +57,6 @@ const Background = styled.div`
         height: 100vh;
         width: 100vw;
         object-fit: cover;
-
-        @media (max-width: 768px) {
-            width: initial;
-        }
     }
 
     @media (max-width: 768px) {
@@ -159,7 +155,6 @@ const Trailer = styled(Player)`
 `;
 
 const GroupWatch = styled(Player)`
-    margin: 0 .2rem;
     border-radius: 50%;
     padding: 0;
     min-width: 50px;
@@ -176,6 +171,7 @@ const GroupWatch = styled(Player)`
     }
 
     @media (max-width: 768px) {
+        margin: 0 .2rem;
         min-width: 44px;
         min-height: 44px;
         max-width: 44px;
