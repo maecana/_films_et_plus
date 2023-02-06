@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import { selectNewDisney } from '../features/movie/movieSlice';
 
