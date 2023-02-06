@@ -1,3 +1,4 @@
+// Package / Dependency Imports
 import { createSlice } from '@reduxjs/toolkit';
 
 
@@ -7,6 +8,7 @@ const initialState = {
     original: null,
     trending: null,
 };
+
 
 const movieSlice = createSlice({
     name: 'movie',
@@ -20,6 +22,7 @@ const movieSlice = createSlice({
         },
     },
 });
+
 
 export const { setMovies } = movieSlice.actions;
 

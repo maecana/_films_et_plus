@@ -1,5 +1,6 @@
+// Package / Dependency Imports
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
+// Local Imports
 import './App.css';
 import Details from './components/Details';
 import Header from './components/Header';
@@ -21,5 +22,6 @@ function App() {
     </div>
   );
 }
+
 
 export default App;

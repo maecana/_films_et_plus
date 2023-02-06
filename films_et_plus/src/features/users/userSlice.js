@@ -1,4 +1,4 @@
-// Dependency Imports
+// Package / Dependency Imports
 import { createSlice } from "@reduxjs/toolkit";
 
 
@@ -7,6 +7,7 @@ const initialState = {
     email: '',
     photo: '',
 };
+
 
 const userSlice = createSlice({
     name: 'user',
@@ -25,6 +26,7 @@ const userSlice = createSlice({
         },
     },
 });
+
 
 export const { setUserLoginDetails, setSignOutState } = userSlice.actions;
 

@@ -8,6 +8,7 @@ import movieReducer from '../features/movie/movieSlice';
 
 const middleware = [ createLogger() ];
 
+
 export const store = configureStore({
     reducer: {
         user: userReducer,
@@ -15,5 +16,6 @@ export const store = configureStore({
     },
     middleware,
 });
+
 
 export default store;

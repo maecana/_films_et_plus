@@ -56,6 +56,7 @@ const Home = (props) => {
         getAllMovies();
     }, [ userName, dispatch ]);
 
+
     return (
         <Container>
             <ImageSlider />

@@ -1,11 +1,14 @@
+// Package / Dependency Imports
 import styled from 'styled-components';
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+// Local Imports
 import { selectNewDisney } from '../features/movie/movieSlice';
 
 
 const NewDisney = (props) => {
     const movies = useSelector(selectNewDisney);
+
 
     return (
         <Container>
@@ -70,5 +73,6 @@ const Wrap = styled.div`
         border-color: rgba( 249, 249, 249, 0.8)
     }
 `;
+
 
 export default NewDisney;
