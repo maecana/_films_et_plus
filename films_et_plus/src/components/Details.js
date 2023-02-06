@@ -11,6 +11,19 @@ const Details = (props) => {
             <Title>
                 <img src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/F70235E3463A6F246EB462ED5379F9D41D6318E80098BD40900E7AFC1C7D932D/scale?width=1440&aspectRatio=1.78" alt="Title" />
             </Title>
+
+            <MetaContent>
+                <Controls>
+                    <Player>
+                        <img src="/images/play-icon-black.png" alt="" />
+                        <span>Play</span>
+                    </Player>
+                    <Trailer>
+                        <img src="/images/play-icon-white.png" alt="" />
+                        <span>Trailer</span>
+                    </Trailer>
+                </Controls>
+            </MetaContent>
         </Container>
     )
 };
@@ -68,5 +81,68 @@ const Title = styled.div`
         min-width: 200px;
     }
 `;
+
+const MetaContent = styled.div`
+    width: 50vw;
+    max-width: 874px;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 0 2vw;
+`;
+
+const Controls = styled.div`
+    display: flex;
+    width: 100%;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: center;
+`;
+
+const Player = styled.button`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 24px;
+    margin: 0 .5rem;
+    font-size: 16px;
+    height: 56px;
+    letter-spacing: 1.8px;
+    border-radius: 4px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    text-transform: uppercase;
+    background: rgb(249, 249, 249);
+    color: (0, 0, 0);
+
+    img {
+        width: 32px;
+    }
+
+    &:hover {
+        background: rgb(198, 198, 198);
+    }
+
+    @media (max-width: 768px) {
+        height: 44px;
+        padding: 0 12px;
+
+        img {
+            width: 24px;
+        }
+    }
+`;
+
+
+const Trailer = styled(Player)`
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgb(249, 249, 249);
+    color: rgb(249, 249, 249);
+`;
+
+
 
 export default Details;
