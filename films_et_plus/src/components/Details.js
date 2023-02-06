@@ -1,20 +1,44 @@
 // Package / Depedency Imports
+import styled from 'styled-components';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import styled from 'styled-components';
+import { doc, getDoc } from "firebase/firestore";
+
 // local Imports
 import { db } from '../firebase/firebase';
 
 
 const Details = (props) => {
+    const { id } = useParams();
+    const [ details, setDetails ] = useState({});
+
+    useEffect(() => {
+        const getMovieDetails = async () => {
+            const docRef = doc(db, "movies", id);
+            const docSnap = await getDoc(docRef);
+
+            if (docSnap.exists()) {
+                const data = docSnap.data();
+                setDetails(data);
+            }
+        };
+
+
+        getMovieDetails();
+    }, [ id ]);
+
+
     return (
         <Container>
             <Background>
-                <img src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/FA1548A6B82C9991B1D38DF251A388FEA2483904510FBC73E150F67F7BDE38C0/scale?width=1440&aspectRatio=1.78&format=jpeg" alt="Background" />
+                <img src={details.backgroundImg} alt="" />
             </Background>
 
             <Title>
-                <img src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/F70235E3463A6F246EB462ED5379F9D41D6318E80098BD40900E7AFC1C7D932D/scale?width=1440&aspectRatio=1.78" alt="Title" />
+                {details && details.titleImg ?
+                    <img src={details.titleImg } alt={details.title} /> :
+                    <h1>{details?.title || 'No title available.'}</h1>
+                }
             </Title>
 
             <MetaContent>
@@ -37,12 +61,11 @@ const Details = (props) => {
                 </Controls>
 
                 <Subtitle>
-                    Cupidatat laborum et aliquip non et dolor.
+                    {details?.subTitle || 'No subtitle available.'}
                 </Subtitle>
 
                 <Description>
-                    Deserunt id enim exercitation nulla duis. Consequat aliquip enim ea tempor elit. Sint magna do ut sint ad adipisicing sit qui occaecat aliqua esse aute. Qui aute tempor velit velit enim. Et Lorem dolor cupidatat Lorem eu aute deserunt occaecat ipsum elit voluptate eu. Dolore aliqua consectetur incididunt aliquip deserunt excepteur ea sit qui dolore pariatur est.
-                    Ex id ex consequat enim. Elit nostrud est nostrud aliquip ullamco. Ea dolor qui in sunt quis aliqua esse mollit minim incididunt adipisicing sunt. Nostrud exercitation amet mollit adipisicing id do aliqua et commodo sit fugiat mollit. Commodo enim nostrud voluptate adipisicing id dolor irure labore est sit. Cillum qui voluptate mollit aute veniam. Magna ipsum qui sunt in ad commodo ea.
+                    {details?.description || 'No description available.'}
                 </Description>
             </MetaContent>
         </Container>
@@ -93,15 +116,32 @@ const Title = styled.div`
     padding-bottom: 24px;
 
     img {
+        padding: 0 2vw;
         width: 35vw;
         max-width: 600px;
         min-width: 200px;
     }
+
+    h1 {
+        padding: 0 12px;
+        margin: 0;
+        max-width: 50vw;
+        overflow: hidden;
+        white-space: wrap;
+        text-overflow: ellipsis;
+        font-size: 5rem;
+
+    }
+
+    @media (max-width: 768px) {
+        h1 {
+            font-size: 2rem;
+        }
+    }
 `;
 
 const MetaContent = styled.div`
-    width: 50vw;
-    max-width: 874px;
+    width: 90vw;
     min-width: 300px;
     display: flex;
     flex-direction: column;
@@ -109,6 +149,10 @@ const MetaContent = styled.div`
     justify-content: flex-start;
     padding: 0 2vw;
     padding-bottom: 1.5rem;
+
+    @media (max-width: 768px) {
+        width: 100%;
+    }
 `;
 
 const Controls = styled.div`
