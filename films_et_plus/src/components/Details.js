@@ -159,11 +159,30 @@ const Trailer = styled(Player)`
 `;
 
 const GroupWatch = styled(Player)`
+    margin: 0 .2rem;
     border-radius: 50%;
-    min-width: 44px;
-    min-height: 44px;
+    padding: 0;
+    min-width: 50px;
+    min-height: 50px;
+    max-width: 50px;
+    max-height: 50px;
+    width: 50px;
+    height: 50px;
     border: 2px solid rgb(249, 249, 249);
     background: rgba(0, 0, 0, 0.6);
+
+    img {
+        width: 80%;
+    }
+
+    @media (max-width: 768px) {
+        min-width: 44px;
+        min-height: 44px;
+        max-width: 44px;
+        max-height: 44px;
+        width: 44px;
+        height: 44px;
+    }
 `;
 
 const AddToList = styled(GroupWatch)`
@@ -177,7 +196,7 @@ const AddToList = styled(GroupWatch)`
         }
         &:nth-child(2) {
             height: 16px;
-            transform: translateX(-7px) rotate(0deg);
+            transform: translateX(-8px) rotate(0deg);
             width: 2px;
         }
     }
