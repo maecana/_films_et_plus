@@ -1,4 +1,9 @@
+// Package/Depedency Imports
+import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
+// local Imports
+import { db } from '../firebase/firebase';
 
 
 const Details = (props) => {
@@ -30,6 +35,15 @@ const Details = (props) => {
                         <img src="/images/group-icon.png" alt="Group Watch" />
                     </GroupWatch>
                 </Controls>
+
+                <Subtitle>
+                    Cupidatat laborum et aliquip non et dolor.
+                </Subtitle>
+
+                <Description>
+                    Deserunt id enim exercitation nulla duis. Consequat aliquip enim ea tempor elit. Sint magna do ut sint ad adipisicing sit qui occaecat aliqua esse aute. Qui aute tempor velit velit enim. Et Lorem dolor cupidatat Lorem eu aute deserunt occaecat ipsum elit voluptate eu. Dolore aliqua consectetur incididunt aliquip deserunt excepteur ea sit qui dolore pariatur est.
+                    Ex id ex consequat enim. Elit nostrud est nostrud aliquip ullamco. Ea dolor qui in sunt quis aliqua esse mollit minim incididunt adipisicing sunt. Nostrud exercitation amet mollit adipisicing id do aliqua et commodo sit fugiat mollit. Commodo enim nostrud voluptate adipisicing id dolor irure labore est sit. Cillum qui voluptate mollit aute veniam. Magna ipsum qui sunt in ad commodo ea.
+                </Description>
             </MetaContent>
         </Container>
     )
@@ -94,6 +108,7 @@ const MetaContent = styled.div`
     align-items: flex-start;
     justify-content: flex-start;
     padding: 0 2vw;
+    padding-bottom: 1.5rem;
 `;
 
 const Controls = styled.div`
@@ -138,7 +153,6 @@ const Player = styled.button`
         }
     }
 `;
-
 
 const Trailer = styled(Player)`
     background: rgba(0, 0, 0, 0.3);
@@ -204,6 +218,26 @@ const AddToList = styled(GroupWatch)`
     }
 `;
 
+const Subtitle = styled.div`
+    margin: 1.5rem .5rem;
+    color: rgb(249, 249, 249);
+    font-size: 16px;
+
+    @media (max-width: 768px) {
+        font-size: 12px;
+    }
+`;
+
+const Description = styled.div`
+    margin: 0 .5rem;
+    line-height: 1.4;
+    font-size: 20px;
+    color: rbg(249, 249, 249);
+
+    @media (max-width: 768px) {
+        font-size: 14px;
+    }
+`;
 
 
 export default Details;
