@@ -13,6 +13,7 @@ import Originals from './Originals';
 import Recommends from './Recommends';
 import Trending from './Trending';
 import Viewers from './Viewers';
+import Footer from './Footer';
 
 
 const Home = (props) => {
@@ -65,6 +66,7 @@ const Home = (props) => {
             <NewDisney />
             <Originals />
             <Trending />
+            <Footer />
         </Container>
     );
 };
