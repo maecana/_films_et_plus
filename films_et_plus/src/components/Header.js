@@ -26,8 +26,7 @@ const Header = (props) => {
                 setUser(user);
                 
                 const _path = window.location.pathname;
-                console.log("_path: ",_path);
-                (_path === '/') ? navigate(_path) : navigate("/home");
+                (_path === '/') ? navigate('/home') : navigate(_path);
             }
         })
     }, [ username, navigate ]);
