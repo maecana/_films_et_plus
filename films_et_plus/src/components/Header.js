@@ -24,7 +24,10 @@ const Header = (props) => {
         auth.onAuthStateChanged(async (user) => {
             if (user) {
                 setUser(user);
-                navigate('/home');
+                
+                const _path = window.location.pathname;
+                console.log("_path: ",_path);
+                (_path === '/') ? navigate(_path) : navigate("/home");
             }
         })
     }, [ username, navigate ]);
@@ -50,7 +53,7 @@ const Header = (props) => {
         } else {
             auth.signOut().then(() => {
                 dispatch(setSignOutState());
-                navigate('/');
+                navigate("/");
             }).catch((error) => {
                 // const errorCode = error.code;
                 // const errorMessage = error.message;
@@ -207,6 +210,7 @@ const Login = styled.a`
     border: 1px solid #f9f9f9;
     border-radius: 4px;
     transition: all .2ms ease 0s;
+    cursor: pointer;
 
     &:hover {
         background-color: #f9f9f9;
